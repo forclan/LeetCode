@@ -1,0 +1,23 @@
+<!doctype html>
+
+<html>
+  <head>
+ 
+      <p>Hello World 2</p>
+      <script src="d3.v3.min.js" charset="utf-8"></script> 
+      <script src="app.js">
+        
+      </script>
+      <script>  
+        var dataset = ['1', '2', '3'
+        var p = d3.select("body").selectAll("p");
+        p.data(dataset).text(function(d, i) {
+            return d;
+          }
+        );
+        var dataset = [ 250 , 210 , 170 , 130 , 90 ];
+      </script> 
+      <svg class="chart"> 
+      </svg>
+    </body> 
+</html>
