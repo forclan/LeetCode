@@ -96,4 +96,34 @@ var lengthOfLIS = function(nums) {
     
 };
 
+function calLBS(nums) {
+    if (nums.length === 0) {
+        return 0;
+    }
+    var result = [nums[0]];
+    var len = nums.length;
+    for (var i = 1; i < len; i++) {
+        result = insert(result, nums[i]);
+    }
+    // console.log(result);
+    return result.length;
+}
+function insert(array, num) {
+    var len = array.length;
+    if (array[len - 1] < num) {
+        array.push(num);
+        return array;
+    }
+    for (var i = 0; i < len; i++) {
+        if (array[i] >= num) {
+            array[i] = num;
+            return array;
+        }
+    }
+    if (array[array.length - 1] < num) {
+        array.push(num);
+    }
+    return array;
+}
 console.log(calLongestSequence([2, 2]));
+console.log(calLBS([3,5,6,2,5,4,19,5,6,7,12]));
