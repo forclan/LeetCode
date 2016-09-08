@@ -1,22 +1,28 @@
-// suppose nums is in ascending order
-function take(nums, target) {
-    if (nums.length === 0) {
-        return 0;
-    }
-    if (target < 0) {
-        return 0;
-    }
-    if (target === 0) {
-        return 1;
-    }
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var combinationSum4 = function(nums, target) {
     var len = nums.length;
-    var result = 0;
-    for (var i = 0; i < len; i++) {
-        var val = take(nums, target- nums[i])
-        result += val;
+    var hold = Array.apply(null, Array(target + 1)).map(function() {
+        return 0;
+    });
+    nums.sort(function(a, b) {
+        return a - b;
+    })
+    for (var i = 1; i <= target; i++) {
+        for (var j = 0; j < len; j++) {
+            if (i < nums[j]) {
+                break;
+            } else if (i === nums[j]) {
+                hold[i] = (hold[i] || 0) + 1;
+            } else {
+                hold[i] += hold[i - nums[j]];
+            }
+        }
     }
-    return result;
-    // return take(nums, target - nums[0]) + take(nums.slice(1, nums.length + 1), target);
-}
+    return hold[target];
+};
 
-console.log(take([1, 2, 4], 4));
+console.log(combinationSum4([1, 2, 3], 4));
